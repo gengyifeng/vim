@@ -6,12 +6,26 @@ map <F10> :TlistToggle<CR>
 " Tab key-map
 map <F5> :tabprevious<CR>
 map <F6> :tabnext<CR>
-map <C-N>   :tabnew .<CR>
+map <C-T>   :tabnew .<CR>
 map <C-C>  :tabclose<CR>
 imap <F5> <ESC>:tabprevious<CR>i
 imap <F6> <ESC>:tabnext<CR>i
 imap <C-T>  <ESC>:tabnew .<CR>i
 imap <C-C>  <ESC>:tabclose<CR>i
+
+" 窗口区域切换,Ctrl+↑↓←→ 来切换
+imap <silent> <C-left> <esc><C-W><left>
+vmap <silent> <C-left> <esc><C-W><left>
+nmap <silent> <C-left> <C-W><left>
+imap <silent> <C-right> <esc><C-W><right>
+vmap <silent> <C-right> <esc><C-W><right>
+nmap <silent> <C-right> <C-W><right>
+imap <silent> <C-up> <esc><C-W><up>
+vmap <silent> <C-up> <esc><C-W><up>
+nmap <silent> <C-up> <C-W><up>
+imap <silent> <C-down> <esc><C-W><down>
+vmap <silent> <C-down> <esc><C-W><down>
+nmap <silent> <C-down> <C-W><down>
 
 " Copy and Paste
 let mapleader=","
@@ -42,6 +56,23 @@ filetype plugin on
 
 " 为特定文件类型载入相关缩进文件
 filetype indent on
+
+"在输入括号时光标会短暂地跳到与之相匹配的括号处，不影响输入
+set showmatch
+" 匹配括号高亮的时间（单位是十分之一秒）
+set matchtime=1
+
+" 在搜索时，输入的词句的逐字符高亮（类似firefox的搜索）
+set incsearch
+
+" 搜索高亮
+set hlsearch
+
+" 不要闪烁
+set novisualbell
+
+"正确地处理中文字符的折行和拼接
+set formatoptions+=mM
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 文本格式和排版
