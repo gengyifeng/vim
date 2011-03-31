@@ -102,7 +102,7 @@ set shiftwidth=4
 set noexpandtab
 
 " 不要换行
-"set nowrap
+set wrap
 
 " 在行和段开始处使用制表符
 set smarttab
