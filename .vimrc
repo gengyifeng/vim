@@ -26,7 +26,9 @@ nmap <silent> <C-up> <C-W><up>
 imap <silent> <C-down> <esc><C-W><down>
 vmap <silent> <C-down> <esc><C-W><down>
 nmap <silent> <C-down> <C-W><down>
-
+" 代码块缩进
+vmap <TAB> >
+vmap <S-TAB> <
 " Copy and Paste
 "let mapleader=","
 "map <leader>c "+y
@@ -117,7 +119,7 @@ if has("autocmd")
    autocmd FileType xml,html vmap <C-o> <ESC>'<i<!--<ESC>o<ESC>'>o-->
    autocmd FileType java,c,cpp,cs vmap <C-o> <ESC>'<o
    autocmd FileType html,text,php,vim,c,java,xml,bash,shell,perl,python setlocal textwidth=100
-   autocmd Filetype html,xml,xsl source $VIMRUNTIME/plugin/closetag.vim
+   autocmd Filetype html,xml,xsl source ~/.vim/scripts/closetag.vim
    autocmd BufReadPost *
       \ if line("'\"") > 0 && line("'\"") <= line("$") |
       \   exe "normal g`\"" |
