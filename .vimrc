@@ -30,9 +30,9 @@ nmap <silent> <C-down> <C-W><down>
 vmap <TAB> >
 vmap <S-TAB> <
 " Copy and Paste
-let mapleader=","
-map <leader>c "+y
-map <leader>v "+p
+"let mapleader=","
+"map <leader>c "+y
+"map <leader>v "+p
 
 " keep paste format, but conflict with supertag!
 "set paste
