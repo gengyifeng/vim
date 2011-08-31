@@ -26,12 +26,16 @@ nmap <silent> <C-up> <C-W><up>
 imap <silent> <C-down> <esc><C-W><down>
 vmap <silent> <C-down> <esc><C-W><down>
 nmap <silent> <C-down> <C-W><down>
-
+" 代码块缩进
+vmap <TAB> >
+vmap <S-TAB> <
 " Copy and Paste
 let mapleader=","
 map <leader>c "+y
 map <leader>v "+p
-set paste
+
+" keep paste format, but conflict with supertag!
+"set paste
 
 "TList
 let Tlist_Show_One_File=1        "设置只显示1个文件的tag
@@ -114,7 +118,7 @@ if has("autocmd")
    autocmd FileType xml,html vmap <C-o> <ESC>'<i<!--<ESC>o<ESC>'>o-->
    autocmd FileType java,c,cpp,cs vmap <C-o> <ESC>'<o
    autocmd FileType html,text,php,vim,c,java,xml,bash,shell,perl,python setlocal textwidth=100
-   autocmd Filetype html,xml,xsl source ~/.vim/plugin/closetag.vim
+   autocmd Filetype html,xml,xsl source ~/.vim/scripts/closetag.vim
    autocmd BufReadPost *
       \ if line("'\"") > 0 && line("'\"") <= line("$") |
       \   exe "normal g`\"" |
@@ -123,13 +127,14 @@ endif " has("autocmd")
 
 "设置Java代码的自动补全
 au FileType java setlocal omnifunc=javacomplete#Complete
-let mapleader = "."
-"绑定自动补全的快捷键<C-X><C-O>到<C-X>;
-"imap <leader>  .<C-X><C-O>
-imap <C-X>  <C-X><C-O>
 
 " ctags -R --c++-kinds=+p --fields=+iaS --extra=+q --language-force=C++ -f qt4 /usr/include/qt4/ # for QT4
 " configure tags - add additional tags here or comment out not-used ones
 set tags+=~/.vim/tags/cpp
 "set tags+=~/.vim/tags/qt4
-map <C-F12> :!ctags -R --c++-kinds=+pl --fields=+iaS --extra=+q .<CR>
+map <C-F12> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
+
+" 设置注释
+vmap = <Esc><Esc>:call EnhancedCommentify('yes','comment',line("'<"),line("'>"))<CR>
+" 取消注释
+vmap - <Esc><Esc>:call EnhancedCommentify('yes','decomment',line("'<"),line("'>"))<CR>
