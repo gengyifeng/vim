@@ -82,7 +82,6 @@ set formatoptions=tcrqn
 
 " 继承前一行的缩进方式，特别适用于多行注释
 set autoindent
-
 " 为C程序提供自动缩进
 set smartindent
 
@@ -97,7 +96,7 @@ set softtabstop=4
 set shiftwidth=4
 
 " 不要用空格代替制表符
-set noexpandtab
+set expandtab
 
 " 不要换行
 set wrap
@@ -115,7 +114,7 @@ if has("autocmd")
    autocmd FileType xml,html vmap <C-o> <ESC>'<i<!--<ESC>o<ESC>'>o-->
    autocmd FileType java,c,cpp,cs vmap <C-o> <ESC>'<o
    autocmd FileType html,text,php,vim,c,java,xml,bash,shell,perl,python setlocal textwidth=100
-   autocmd Filetype html,xml,xsl source $VIMRUNTIME/plugin/closetag.vim
+   autocmd Filetype html,xml,xsl source ~/.vim/plugin/closetag.vim
    autocmd BufReadPost *
       \ if line("'\"") > 0 && line("'\"") <= line("$") |
       \   exe "normal g`\"" |
