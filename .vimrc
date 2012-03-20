@@ -133,7 +133,7 @@ if has("autocmd")
     au FileType helpfile set nonumber      " no line numbers when viewing help
     au FileType helpfile nnoremap <buffer><cr> <c-]>   " Enter selects subject
     au FileType helpfile nnoremap <buffer><bs> <c-T>   " Backspace to go back
-
+    au Filetype *.py,*.pyw set syntax python
     " When using mutt, text width=72
     au FileType mail,tex set textwidth=72
     au FileType cpp,c,java,sh,pl,php,asp,html,xml  set autoindent
