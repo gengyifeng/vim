@@ -161,6 +161,6 @@ set tags+=~/.vim/tags/cpp
 map <C-F12> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
 
 " 设置注释
-vmap = <Esc><Esc>:call EnhancedCommentify('yes','comment',line("'<"),line("'>"))<CR>
+vmap = <Esc><Esc>:call EnhancedCommentify('yes','comment',line("'<"),line("'>"))<CR><CR>
 " 取消注释
-vmap - <Esc><Esc>:call EnhancedCommentify('yes','decomment',line("'<"),line("'>"))<CR>
+vmap - <Esc><Esc>:call EnhancedCommentify('yes','decomment',line("'<"),line("'>"))<CR><CR>
