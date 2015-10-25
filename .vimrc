@@ -60,6 +60,7 @@ filetype on
 " 载入文件类型插件
 filetype plugin on
 
+execute pathogen#infect()
 " 为特定文件类型载入相关缩进文件
 filetype indent on
 " 语法高亮显示
