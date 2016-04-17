@@ -1,3 +1,26 @@
+
+filetype off                  " required
+
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+" alternatively, pass a path where Vundle should install plugins
+"call vundle#begin('~/some/path/here')
+
+" let Vundle manage Vundle, required
+Plugin 'VundleVim/Vundle.vim'
+Plugin 'kana/vim-operator-user'
+Plugin 'rhysd/vim-clang-format'
+
+Plugin 'alvan/vim-closetag'
+Plugin 'hrp/EnhancedCommentify'
+Plugin 'scrooloose/nerdtree'
+Plugin 'vim-scripts/taglist.vim'
+Plugin 'ervandew/supertab'
+Plugin 'Valloric/YouCompleteMe'
+
+call vundle#end()
+
 "NERDTree key-map  
 map <F9> :NERDTreeToggle<CR>
 map <F10> :TlistToggle<CR>
@@ -60,7 +83,6 @@ filetype on
 " 载入文件类型插件
 filetype plugin on
 
-execute pathogen#infect()
 " 为特定文件类型载入相关缩进文件
 filetype indent on
 " 语法高亮显示
@@ -93,12 +115,12 @@ set nosmartindent
 set nocindent
 
 
-" 制表符为4
-set tabstop=4
+" 制表符
+set tabstop=2
 
-" 统一缩进为4
-set softtabstop=4
-set shiftwidth=4
+" 统一缩进
+set softtabstop=2
+set shiftwidth=2
 " 设置backspace的工作方式
 set backspace=indent,eol,start
 " 用空格代替制表符
@@ -165,3 +187,17 @@ map <C-F12> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
 vmap = <Esc><Esc>:call EnhancedCommentify('yes','comment',line("'<"),line("'>"))<CR><CR>
 " 取消注释
 vmap - <Esc><Esc>:call EnhancedCommentify('yes','decomment',line("'<"),line("'>"))<CR><CR>
+
+"let g:clang_format#style_options = {
+"            \ "AccessModifierOffset" : -4,
+"            \ "AllowShortIfStatementsOnASingleLine" : "true",
+"            \ "AlwaysBreakTemplateDeclarations" : "true",
+"            \ "Standard" : "C++11"}
+
+" map to <Leader>cf in C++ code
+autocmd FileType c,cpp,objc nnoremap <buffer><Leader>cf :<C-u>ClangFormat<CR>
+autocmd FileType c,cpp,objc vnoremap <buffer><Leader>cf :ClangFormat<CR>
+" if you install vim-operator-user
+autocmd FileType c,cpp,objc map <buffer><Leader>x <Plug>(operator-clang-format)
+" Toggle auto formatting:
+nmap <Leader>C :ClangFormatAutoToggle<CR>
