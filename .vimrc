@@ -245,6 +245,6 @@ let g:ycm_collect_identifiers_from_comments_and_strings = 0
 let g:ycm_error_symbol='>>'
 let g:ycm_warning_symbol='>*'
 "设置跳转的快捷键，可以跳转到definition和declaration
-nnoremap <leader>gc :YcmCompleter GoToDeclaration<CR>
-nnoremap <leader>gf :YcmCompleter GoToDefinition<CR>
-nnoremap <leader>gg :YcmCompleter GoToDefinitionElseDeclaration<CR>
+nnoremap <leader>dc :YcmCompleter GoToDeclaration<CR>
+nnoremap <leader>df :YcmCompleter GoToDefinition<CR>
+nnoremap <leader>dd :YcmCompleter GoToDefinitionElseDeclaration<CR>
