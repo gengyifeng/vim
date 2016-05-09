@@ -17,7 +17,7 @@ Plugin 'hrp/EnhancedCommentify'
 Plugin 'scrooloose/nerdtree'
 Plugin 'vim-scripts/taglist.vim'
 Plugin 'ervandew/supertab'
-Plugin 'Valloric/YouCompleteMe' 
+"Plugin 'Valloric/YouCompleteMe' 
 call vundle#end()
 
 "NERDTree key-map  
@@ -187,11 +187,13 @@ vmap = <Esc><Esc>:call EnhancedCommentify('yes','comment',line("'<"),line("'>"))
 " 取消注释
 vmap - <Esc><Esc>:call EnhancedCommentify('yes','decomment',line("'<"),line("'>"))<CR><CR>
 
-"let g:clang_format#style_options = {
-"            \ "AccessModifierOffset" : -4,
-"            \ "AllowShortIfStatementsOnASingleLine" : "true",
-"            \ "AlwaysBreakTemplateDeclarations" : "true",
-"            \ "Standard" : "C++11"}
+let g:clang_format#style_options = {
+            \ "AccessModifierOffset" : -4,
+            \ "AllowShortIfStatementsOnASingleLine" : "true",
+            \ "AlwaysBreakTemplateDeclarations" : "true",
+            \ "BinPackArguments" : "true",
+            \ "BinPackParameters" : "true",
+            \ "Standard" : "C++11"}
 
 " map to <Leader>cf in C++ code
 autocmd FileType c,cpp,objc nnoremap <buffer><Leader>cf :<C-u>ClangFormat<CR>
@@ -200,6 +202,8 @@ autocmd FileType c,cpp,objc vnoremap <buffer><Leader>cf :ClangFormat<CR>
 autocmd FileType c,cpp,objc map <buffer><Leader>x <Plug>(operator-clang-format)
 " Toggle auto formatting:
 nmap <Leader>C :ClangFormatAutoToggle<CR>
+
+autocmd FileType c,cpp,objc ClangFormatAutoEnable
 
 let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
 " 让vim的补全菜单行为与一般IDE一致
