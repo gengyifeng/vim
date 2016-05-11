@@ -197,6 +197,8 @@ let g:clang_format#style_options = {
             \ "AlwaysBreakTemplateDeclarations" : "true",
             \ "BinPackArguments" : "false",
             \ "BinPackParameters" : "false",
+            \ "DerivePointerAlignment" : "false",
+            \ "PointerAlignment" : "Left",
             \ "Standard" : "C++11"}
 
 " map to <Leader>cf in C++ code
