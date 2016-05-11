@@ -156,6 +156,9 @@ if has("autocmd")
     au FileType helpfile nnoremap <buffer><cr> <c-]>   " Enter selects subject
     au FileType helpfile nnoremap <buffer><bs> <c-T>   " Backspace to go back
     au Filetype *.py,*.pyw set syntax python
+    au FileType *.py,*.pyw set tabstop=4
+    au FileType *.py,*.pyw set softtabstop=4
+    au FileType *.py,*.pyw set shiftwidth=4
     " When using mutt, text width=72
     au FileType mail,tex set textwidth=72
     au FileType cpp,c,java,sh,pl,php,asp,html,xml  set autoindent
@@ -175,6 +178,7 @@ if has("autocmd")
     au InsertEnter * se cul
 endif
 
+autocmd FileType *.py,*.pyw set tabstop=2 set softtabstop=2 set shiftwidth=2
 
 " ctags -R --c++-kinds=+p --fields=+iaS --extra=+q --language-force=C++ -f qt4 /usr/include/qt4/ # for QT4
 " configure tags - add additional tags here or comment out not-used ones
@@ -188,11 +192,11 @@ vmap = <Esc><Esc>:call EnhancedCommentify('yes','comment',line("'<"),line("'>"))
 vmap - <Esc><Esc>:call EnhancedCommentify('yes','decomment',line("'<"),line("'>"))<CR><CR>
 
 let g:clang_format#style_options = {
-            \ "AccessModifierOffset" : -4,
+            \ "AccessModifierOffset" : -1,
             \ "AllowShortIfStatementsOnASingleLine" : "true",
             \ "AlwaysBreakTemplateDeclarations" : "true",
-            \ "BinPackArguments" : "true",
-            \ "BinPackParameters" : "true",
+            \ "BinPackArguments" : "false",
+            \ "BinPackParameters" : "false",
             \ "Standard" : "C++11"}
 
 " map to <Leader>cf in C++ code
