@@ -56,7 +56,7 @@ vmap <S-TAB> <
 "map <leader>v "+p
 
 " keep paste format, but conflict with supertag!
-"set paste
+set paste
 
 "TList
 let Tlist_Show_One_File=1        "设置只显示1个文件的tag
