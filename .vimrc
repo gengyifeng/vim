@@ -11,13 +11,15 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'kana/vim-operator-user'
 Plugin 'rhysd/vim-clang-format'
+"Plugin 'Chiel92/vim-autoformat'
 
 Plugin 'alvan/vim-closetag'
 Plugin 'hrp/EnhancedCommentify'
 Plugin 'scrooloose/nerdtree'
-Plugin 'vim-scripts/taglist.vim'
+"Plugin 'vim-scripts/taglist.vim'
 Plugin 'ervandew/supertab'
-Plugin 'Valloric/YouCompleteMe' 
+"Plugin 'Valloric/YouCompleteMe' 
+Plugin 'pignacio/vim-yapf-format'
 call vundle#end()
 
 "NERDTree key-map  
@@ -56,7 +58,7 @@ vmap <S-TAB> <
 "map <leader>v "+p
 
 " keep paste format, but conflict with supertag!
-"set paste
+set paste
 
 "TList
 let Tlist_Show_One_File=1        "设置只显示1个文件的tag
@@ -191,13 +193,21 @@ vmap - <Esc><Esc>:call EnhancedCommentify('yes','decomment',line("'<"),line("'>"
 "            \ "AccessModifierOffset" : -4,
 "            \ "AllowShortIfStatementsOnASingleLine" : "true",
 "            \ "AlwaysBreakTemplateDeclarations" : "true",
-"            \ "Standard" : "C++11"}
 
+"            \ "Standard" : "C++11"}
 " map to <Leader>cf in C++ code
-autocmd FileType c,cpp,objc nnoremap <buffer><Leader>cf :<C-u>ClangFormat<CR>
-autocmd FileType c,cpp,objc vnoremap <buffer><Leader>cf :ClangFormat<CR>
+autocmd FileType c,cpp,objc nnoremap <buffer><Leader>f :<C-u>ClangFormat<CR>
+autocmd FileType c,cpp,objc vnoremap <buffer><Leader>f :ClangFormat<CR>
 " if you install vim-operator-user
 autocmd FileType c,cpp,objc map <buffer><Leader>x <Plug>(operator-clang-format)
+
+let g:yapf_format_style = "google"
+" map to <Leader>cf in python code
+"autocmd FileType *.py,*.pyw nnoremap <buffer><Leader>f :<C-u>YapfFormat<CR>
+"autocmd FileType *.py,*.pyw vnoremap <buffer><Leader>f :YapfFormat<CR>
+"map <Leader>f :YapfFullFormat<CR>
+imap <Leader>f <ESC>:YapfFormat<CR>i
+vmap <Leader>f :YapfFormat<CR>
 " Toggle auto formatting:
 nmap <Leader>C :ClangFormatAutoToggle<CR>
 
@@ -248,3 +258,11 @@ let g:ycm_warning_symbol='>*'
 nnoremap <leader>gc :YcmCompleter GoToDeclaration<CR>
 nnoremap <leader>gf :YcmCompleter GoToDefinition<CR>
 nnoremap <leader>gg :YcmCompleter GoToDefinitionElseDeclaration<CR>
+
+"let g:formatter_yapf_style = 'pep8'
+"
+"noremap <F3> :Autoformat<CR>
+
+"let g:autoformat_autoindent = 0
+"let g:autoformat_retab = 0
+"let g:autoformat_remove_trailing_spaces = 0
