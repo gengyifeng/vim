@@ -11,7 +11,6 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'kana/vim-operator-user'
 Plugin 'rhysd/vim-clang-format'
-"Plugin 'Chiel92/vim-autoformat'
 
 Plugin 'alvan/vim-closetag'
 Plugin 'hrp/EnhancedCommentify'
@@ -158,6 +157,9 @@ if has("autocmd")
     au FileType helpfile nnoremap <buffer><cr> <c-]>   " Enter selects subject
     au FileType helpfile nnoremap <buffer><bs> <c-T>   " Backspace to go back
     au Filetype *.py,*.pyw set syntax python
+    au FileType *.py,*.pyw set tabstop=4
+    au FileType *.py,*.pyw set softtabstop=4
+    au FileType *.py,*.pyw set shiftwidth=4
     " When using mutt, text width=72
     au FileType mail,tex set textwidth=72
     au FileType cpp,c,java,sh,pl,php,asp,html,xml  set autoindent
@@ -177,6 +179,7 @@ if has("autocmd")
     au InsertEnter * se cul
 endif
 
+autocmd FileType *.py,*.pyw set tabstop=2 set softtabstop=2 set shiftwidth=2
 
 " ctags -R --c++-kinds=+p --fields=+iaS --extra=+q --language-force=C++ -f qt4 /usr/include/qt4/ # for QT4
 " configure tags - add additional tags here or comment out not-used ones
@@ -189,20 +192,24 @@ vmap = <Esc><Esc>:call EnhancedCommentify('yes','comment',line("'<"),line("'>"))
 " 取消注释
 vmap - <Esc><Esc>:call EnhancedCommentify('yes','decomment',line("'<"),line("'>"))<CR><CR>
 
-"let g:clang_format#style_options = {
-"            \ "AccessModifierOffset" : -4,
-"            \ "AllowShortIfStatementsOnASingleLine" : "true",
-"            \ "AlwaysBreakTemplateDeclarations" : "true",
+let g:clang_format#style_options = {
+            \ "AccessModifierOffset" : -1,
+            \ "AllowShortIfStatementsOnASingleLine" : "true",
+            \ "AlwaysBreakTemplateDeclarations" : "true",
+            \ "BinPackArguments" : "false",
+            \ "BinPackParameters" : "false",
+            \ "DerivePointerAlignment" : "false",
+            \ "PointerAlignment" : "Left",
+            \ "Standard" : "C++11"}
 
-"            \ "Standard" : "C++11"}
-" map to <Leader>cf in C++ code
+" map to <Leader>c in C++ code
 autocmd FileType c,cpp,objc nnoremap <buffer><Leader>f :<C-u>ClangFormat<CR>
 autocmd FileType c,cpp,objc vnoremap <buffer><Leader>f :ClangFormat<CR>
 " if you install vim-operator-user
 autocmd FileType c,cpp,objc map <buffer><Leader>x <Plug>(operator-clang-format)
 
 let g:yapf_format_style = "google"
-" map to <Leader>cf in python code
+" map to <Leader>f in python code
 "autocmd FileType *.py,*.pyw nnoremap <buffer><Leader>f :<C-u>YapfFormat<CR>
 "autocmd FileType *.py,*.pyw vnoremap <buffer><Leader>f :YapfFormat<CR>
 "map <Leader>f :YapfFullFormat<CR>
@@ -210,6 +217,8 @@ imap <Leader>f <ESC>:YapfFormat<CR>i
 vmap <Leader>f :YapfFormat<CR>
 " Toggle auto formatting:
 nmap <Leader>C :ClangFormatAutoToggle<CR>
+
+autocmd FileType c,cpp,objc ClangFormatAutoEnable
 
 let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
 " 让vim的补全菜单行为与一般IDE一致
@@ -259,10 +268,3 @@ nnoremap <leader>gc :YcmCompleter GoToDeclaration<CR>
 nnoremap <leader>gf :YcmCompleter GoToDefinition<CR>
 nnoremap <leader>gg :YcmCompleter GoToDefinitionElseDeclaration<CR>
 
-"let g:formatter_yapf_style = 'pep8'
-"
-"noremap <F3> :Autoformat<CR>
-
-"let g:autoformat_autoindent = 0
-"let g:autoformat_retab = 0
-"let g:autoformat_remove_trailing_spaces = 0
