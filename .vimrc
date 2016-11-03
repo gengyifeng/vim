@@ -156,10 +156,10 @@ if has("autocmd")
     au FileType helpfile set nonumber      " no line numbers when viewing help
     au FileType helpfile nnoremap <buffer><cr> <c-]>   " Enter selects subject
     au FileType helpfile nnoremap <buffer><bs> <c-T>   " Backspace to go back
-    au Filetype *.py,*.pyw set syntax python
-    au FileType *.py,*.pyw set tabstop=4
-    au FileType *.py,*.pyw set softtabstop=4
-    au FileType *.py,*.pyw set shiftwidth=4
+    au Filetype python set syntax=python
+    au FileType python set tabstop=4
+    au FileType python set softtabstop=4
+    au FileType python set shiftwidth=4
     " When using mutt, text width=72
     au FileType mail,tex set textwidth=72
     au FileType cpp,c,java,sh,pl,php,asp,html,xml  set autoindent
@@ -179,7 +179,7 @@ if has("autocmd")
     au InsertEnter * se cul
 endif
 
-autocmd FileType *.py,*.pyw set tabstop=2 set softtabstop=2 set shiftwidth=2
+"autocmd FileType python set tabstop=2 | set softtabstop=2 | set shiftwidth=2
 
 " ctags -R --c++-kinds=+p --fields=+iaS --extra=+q --language-force=C++ -f qt4 /usr/include/qt4/ # for QT4
 " configure tags - add additional tags here or comment out not-used ones
@@ -202,23 +202,23 @@ let g:clang_format#style_options = {
             \ "PointerAlignment" : "Left",
             \ "Standard" : "C++11"}
 
-" map to <Leader>c in C++ code
+" map to <Leader>f in C++ code
 autocmd FileType c,cpp,objc nnoremap <buffer><Leader>f :<C-u>ClangFormat<CR>
 autocmd FileType c,cpp,objc vnoremap <buffer><Leader>f :ClangFormat<CR>
 " if you install vim-operator-user
 autocmd FileType c,cpp,objc map <buffer><Leader>x <Plug>(operator-clang-format)
 
-let g:yapf_format_style = "google"
+let g:yapf_format_style = "pep8"
 " map to <Leader>f in python code
-"autocmd FileType *.py,*.pyw nnoremap <buffer><Leader>f :<C-u>YapfFormat<CR>
-"autocmd FileType *.py,*.pyw vnoremap <buffer><Leader>f :YapfFormat<CR>
+autocmd FileType python nnoremap <buffer><Leader>f :<C-u>YapfFormat<CR>
+autocmd FileType python vnoremap <buffer><Leader>f :YapfFormat<CR>
 "map <Leader>f :YapfFullFormat<CR>
-imap <Leader>f <ESC>:YapfFormat<CR>i
-vmap <Leader>f :YapfFormat<CR>
+"imap <Leader>f <ESC>:YapfFormat<CR>i
+"vmap <Leader>f :YapfFormat<CR>
 " Toggle auto formatting:
 nmap <Leader>C :ClangFormatAutoToggle<CR>
 
-autocmd FileType c,cpp,objc ClangFormatAutoEnable
+"autocmd FileType c,cpp,objc ClangFormatAutoEnable
 
 let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
 " 让vim的补全菜单行为与一般IDE一致
